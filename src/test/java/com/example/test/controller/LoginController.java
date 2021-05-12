@@ -1,0 +1,26 @@
+package com.example.test.controller;
+
+import com.example.test.bean.UserBean;
+import com.example.test.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class LoginController {
+    @Autowired
+    UserService userService;
+    @RequestMapping("/login")
+    public String show(){
+        return "login";
+    }
+
+    public String login(String name,String password){
+        UserBean userBean= userService.loginIn(name,password);
+    if (userBean!=null){
+        return "success";
+    }else{
+        return "error";
+    }
+    }
+}
